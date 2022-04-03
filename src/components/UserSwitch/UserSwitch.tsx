@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Switch from '../UI/Switch/Switch';
+import Switch from '../Switch/Switch';
 
 function UserSwitch() {
   const [enabled, setEnabled] = useState(false);
