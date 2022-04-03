@@ -1,5 +1,5 @@
 import React from 'react';
 
-export type ChatWrapperPropsType = {
+export type MessagesWrapperPropsType = {
   children: React.ReactNode;
 };

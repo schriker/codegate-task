@@ -1,4 +1,4 @@
-import { LayoutPropsType } from '../../types/layout';
+import { LayoutPropsType } from '../types/layout';
 
 function Layout({ children }: LayoutPropsType) {
   return (

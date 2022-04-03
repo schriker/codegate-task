@@ -1,5 +1,5 @@
 import { Switch as TailwindSwitch } from '@headlessui/react';
-import { SwitchPropsType } from '../../types/switch';
+import { SwitchPropsType } from '../types/switch';
 
 function Switch({ enabled, onChange, label }: SwitchPropsType) {
   return (

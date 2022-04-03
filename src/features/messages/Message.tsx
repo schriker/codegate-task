@@ -1,5 +1,5 @@
-import { useAppSelector } from '../../app/hooks';
-import { selectUserById } from '../../features/users/usersSlice';
+import { useAppSelector } from '../../hooks/useAppSelector';
+import { selectUserById } from '../users/usersSlice';
 import { MessagePropsType } from '../../types/message';
 import dayjs from 'dayjs';
 

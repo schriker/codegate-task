@@ -1,7 +1,7 @@
-import { useAppSelector } from '../../app/hooks';
-import ChatWrapper from '../../components/ChatWrapper/ChatWrapper';
-import Message from '../../components/Message/Message';
-import MessageInput from '../../components/MessageInput/MessageInput';
+import { useAppSelector } from '../../hooks/useAppSelector';
+import MessagesWrapper from './MessagesWrapper';
+import Message from './Message';
+import MessageInput from './MessageInput';
 import { selectCurrentUserId } from '../users/usersSlice';
 import { selectMessages } from './messagesSlice';
 
@@ -10,7 +10,7 @@ function Messages() {
   const currentUserId = useAppSelector(selectCurrentUserId);
 
   return (
-    <ChatWrapper>
+    <MessagesWrapper>
       <div className="overflow-auto flex-auto">
         {messages.map((message) => (
           <Message
@@ -21,7 +21,7 @@ function Messages() {
         ))}
       </div>
       <MessageInput />
-    </ChatWrapper>
+    </MessagesWrapper>
   );
 }
 

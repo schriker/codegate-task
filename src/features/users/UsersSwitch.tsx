@@ -1,11 +1,12 @@
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
+import { useAppSelector } from '../../hooks/useAppSelector';
 import {
   selectCurrentUserId,
   switchUser,
-} from '../../features/users/usersSlice';
-import Switch from '../Switch/Switch';
+} from './usersSlice';
+import Switch from '../../common/Switch';
 
-function UserSwitch() {
+function UsersSwitch() {
   const dispatch = useAppDispatch();
   const currentUserId = useAppSelector(selectCurrentUserId);
 
@@ -18,4 +19,4 @@ function UserSwitch() {
   );
 }
 
-export default UserSwitch;
+export default UsersSwitch;
