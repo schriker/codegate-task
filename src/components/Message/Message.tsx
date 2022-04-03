@@ -1,48 +1,50 @@
-function Message() {
+import { useAppSelector } from '../../app/hooks';
+import { selectUserById } from '../../features/users/usersSlice';
+import { MessagePropsType } from '../../types/message';
+import dayjs from 'dayjs';
+
+function Message({
+  data: { authorId, id, text, timestamp },
+  currentUserId,
+}: MessagePropsType) {
+  const author = useAppSelector((state) => selectUserById(state, authorId));
+  const isOwner = author?.id === currentUserId;
+
   return (
-    <>
-      <div className="flex my-10 mx-12">
-        <img
-          className="inline-block h-6 w-6 rounded-full mr-4"
-          src="https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-          alt=""
-        />
-        <div>
-          <div className="rounded-2xl shadow-2xl bg-[#fff] p-5 mb-2 text-zinc-600">
-            <p className="text-sm font-bold">Krystian Pach</p>
-            <p className="text-sm">Hello, how are you?</p>
-          </div>
-          <div className="flex text-sm text-zinc-400 space-x-1 pl-5">
-            <span>6:35</span>
-            <button className="border-l border-zinc-400 pl-1">edit</button>
-            <button className="border-l border-zinc-400 pl-1">delete</button>
-          </div>
+    <div
+      className={`flex my-10 mx-12 ${
+        isOwner ? 'flex-row-reverse' : 'flex-row'
+      }`}
+    >
+      <img
+        className={`inline-block h-6 w-6 rounded-full ${
+          isOwner ? 'ml-4' : 'mr-4'
+        }`}
+        src={author?.photo}
+        alt={author?.name}
+      />
+      <div>
+        <div
+          className={`rounded-2xl shadow-2xl ${
+            isOwner
+              ? 'shadow-blue-500/50 bg-gradient-to-r from-cyan-500 to-blue-500 text-[#fff]'
+              : 'bg-[#fff] text-zinc-600'
+          }  p-5 mb-2`}
+        >
+          <p className="text-sm font-bold">{author?.name}</p>
+          <p className="text-sm">{text}</p>
+        </div>
+        <div className="flex text-sm text-zinc-400 space-x-1 pl-5">
+          <span>{dayjs(timestamp).format('HH:mm')}</span>
+          {isOwner && (
+            <>
+              <button className="border-l border-zinc-400 pl-1">edit</button>
+              <button className="border-l border-zinc-400 pl-1">delete</button>
+            </>
+          )}
         </div>
       </div>
-      <div className="flex flex-row-reverse my-10 mx-12">
-        <img
-          className="inline-block h-6 w-6 rounded-full ml-4"
-          src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.25&w=256&h=256&q=80"
-          alt=""
-        />
-        <div>
-          <div className="rounded-2xl shadow-2xl shadow-blue-500/50 bg-gradient-to-r from-cyan-500 to-blue-500 p-5 mb-2 text-[#fff]">
-            <p className="text-sm font-bold">Krystian Pach</p>
-            <p className="text-sm">
-              Hello, how are you? Hello, how are you? Hello, how are you? Hello,
-              how are you? Hello, how are you? Hello, how are you? Hello, how
-              are you? Hello, how are you? Hello, how are you? Hello, how are
-              you? Hello, how are you?
-            </p>
-          </div>
-          <div className="flex text-sm text-zinc-400 space-x-1 pl-5">
-            <span>6:35</span>
-            <button className="border-l border-zinc-400 pl-1">edit</button>
-            <button className="border-l border-zinc-400 pl-1">delete</button>
-          </div>
-        </div>
-      </div>
-    </>
+    </div>
   );
 }
 

@@ -1,6 +1,11 @@
 export interface Message {
-  id: string;
+  id: number;
   text: string;
-  timestamp: string;
+  timestamp: number;
   authorId: number;
 }
+
+export type MessagePropsType = {
+  data: Message;
+  currentUserId: number;
+};

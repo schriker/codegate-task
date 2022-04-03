@@ -5,7 +5,7 @@ import { users } from './usersData';
 
 const initialState: UsersState = {
   currentUserId: 0,
-  users: users,
+  data: users,
 };
 
 export const usersSlice = createSlice({
@@ -22,5 +22,8 @@ export const { switchUser } = usersSlice.actions;
 
 export const selectCurrentUserId = (state: RootState) =>
   state.users.currentUserId;
+
+export const selectUserById = (state: RootState, userId: number) =>
+  state.users.data.find((user) => user.id === userId);
 
 export default usersSlice.reducer;
