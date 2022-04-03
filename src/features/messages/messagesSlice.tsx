@@ -2,10 +2,9 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../../app/store';
 import { Message } from '../../types/message';
 import { MessagesState } from '../../types/messagesSlice';
-import { messages } from './messagesData';
 
 const initialState: MessagesState = {
-  data: messages,
+  data: [],
 };
 
 export const messagesSlice = createSlice({
@@ -15,7 +14,7 @@ export const messagesSlice = createSlice({
     addMessage: (state, action: PayloadAction<Message>) => {
       state.data.push(action.payload);
     },
-    deleteMessage: (state, action: PayloadAction<number>) => {
+    deleteMessage: (state, action: PayloadAction<string>) => {
       state.data = state.data.filter(
         (message) => message.id !== action.payload
       );

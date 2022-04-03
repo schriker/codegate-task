@@ -21,7 +21,7 @@ function Message({
       <MessagePhoto src={author.photo} author={author.name} isOwner={isOwner} />
       <div>
         <MessageContent isOwner={isOwner} author={author.name} text={text} />
-        <MessageDetails isOwner={isOwner} timestamp={timestamp} />
+        <MessageDetails isOwner={isOwner} timestamp={timestamp} id={id} />
       </div>
     </div>
   ) : null;

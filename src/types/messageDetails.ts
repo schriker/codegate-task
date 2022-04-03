@@ -1,4 +1,5 @@
 export type MessageDetailsPropsType = {
+  id: string;
   isOwner: boolean;
-  timestamp: number;
+  timestamp: string;
 };
