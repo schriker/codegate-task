@@ -1,7 +1,14 @@
-import React from 'react';
+import Heading from '../components/Heading/Heading';
+import Layout from '../components/Layout/Layout';
+import UserSwitch from '../components/UserSwitch/UserSwitch';
 
 function App() {
-  return <h1 className="text-3xl font-bold underline">Hello world!</h1>;
+  return (
+    <Layout>
+      <Heading>Chat application</Heading>
+      <UserSwitch />
+    </Layout>
+  );
 }
 
 export default App;
