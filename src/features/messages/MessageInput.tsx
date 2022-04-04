@@ -1,15 +1,15 @@
 import { ChevronRightIcon } from '@heroicons/react/solid';
 import { useState } from 'react';
-import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import { Message } from '../../types/message';
 import { selectCurrentUserId } from '../users/usersSlice';
-import { addMessage } from './messagesSlice';
 import { v4 as uuidv4 } from 'uuid';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
+import { addMessage } from './messagesSlice';
 
 function MessageInput() {
-  const dispatch = useAppDispatch();
   const [value, setValue] = useState('');
+  const dispatch = useAppDispatch();
   const currentUserId = useAppSelector(selectCurrentUserId);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -26,7 +26,6 @@ function MessageInput() {
       timestamp: new Date().toUTCString(),
       text: value.trim(),
     };
-
     dispatch(addMessage(message));
     setValue('');
   };
