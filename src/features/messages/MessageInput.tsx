@@ -6,6 +6,7 @@ import { selectCurrentUserId } from '../users/usersSlice';
 import { v4 as uuidv4 } from 'uuid';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { addMessage } from './messagesSlice';
+import MessageImage from './MessageImage';
 
 function MessageInput() {
   const [value, setValue] = useState('');
@@ -46,6 +47,7 @@ function MessageInput() {
         >
           <ChevronRightIcon className="h-6 w-6 text-[#fff]" />
         </button>
+        <MessageImage />
       </form>
     </div>
   );

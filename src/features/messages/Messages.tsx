@@ -10,7 +10,7 @@ function Messages() {
   const divRef = useRef<HTMLDivElement>(null);
   const messages = useAppSelector(selectMessages);
   const currentUserId = useAppSelector(selectCurrentUserId);
-  const lastMessage = messages[messages.length - 1].id;
+  const lastMessage = messages[messages.length - 1]?.id;
 
   useEffect(() => {
     if (divRef.current) {
