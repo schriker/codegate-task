@@ -10,6 +10,7 @@ function MessageImage({ upload }: MessageImagePropsType) {
       reader.readAsDataURL(file);
       reader.onloadend = (photo) => {
         upload(photo.target?.result as string);
+        event.target.value = '';
       };
     }
   };
