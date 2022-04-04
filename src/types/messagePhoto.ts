@@ -1,5 +1,5 @@
 export type MessagePhotoPropsType = {
-  isOwner: boolean;
+  owner: boolean;
   author: string;
   src: string;
 };

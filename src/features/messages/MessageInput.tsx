@@ -24,7 +24,7 @@ function MessageInput() {
       id: uuidv4(),
       authorId: currentUserId,
       timestamp: new Date().toUTCString(),
-      text: value,
+      text: value.trim(),
     };
 
     dispatch(addMessage(message));

@@ -1,5 +1,8 @@
 export type MessageDetailsPropsType = {
   id: string;
-  isOwner: boolean;
+  owner: boolean;
   timestamp: string;
+  editMode: boolean;
+  handleEditMessage: () => void;
+  toggleEditMode: () => void;
 };

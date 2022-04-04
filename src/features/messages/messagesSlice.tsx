@@ -19,10 +19,16 @@ export const messagesSlice = createSlice({
         (message) => message.id !== action.payload
       );
     },
+    editMessage: (state, action: PayloadAction<Message>) => {
+      state.data = state.data.map((message) => {
+        if (message.id !== action.payload.id) return message;
+        return action.payload;
+      });
+    },
   },
 });
 
-export const { addMessage, deleteMessage } = messagesSlice.actions;
+export const { addMessage, deleteMessage, editMessage } = messagesSlice.actions;
 
 export const selectMessages = (state: RootState) => state.messages.data;
 
