@@ -1,6 +1,6 @@
 import { useAppSelector } from '../../hooks/useAppSelector';
 import { selectUserById } from '../users/usersSlice';
-import { MessagePropsType } from '../../types/message';
+import { MessagePropsType, MessageType } from '../../types/message';
 import MessageDetails from './MessageDetails';
 import MessageContent from './MessageContent';
 import MessagePhoto from './MessagePhoto';
@@ -9,7 +9,7 @@ import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { editMessage } from './messagesSlice';
 
 function Message({
-  data: { authorId, id, text, timestamp },
+  data: { authorId, id, text, timestamp, type },
   currentUserId,
 }: MessagePropsType) {
   const author = useAppSelector((state) => selectUserById(state, authorId));
@@ -34,6 +34,7 @@ function Message({
         id,
         authorId,
         timestamp,
+        type: MessageType.TEXT,
         text: value.trim(),
       })
     );
@@ -48,6 +49,7 @@ function Message({
         <MessageContent
           editMode={editMode}
           owner={owner}
+          type={type}
           author={author.name}
           text={value}
           handleChange={handleChange}
@@ -59,6 +61,7 @@ function Message({
           handleEditMessage={handleEditMessage}
           owner={owner}
           timestamp={timestamp}
+          type={type}
           id={id}
         />
       </div>

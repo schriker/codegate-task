@@ -1,7 +1,7 @@
 import { ChevronRightIcon } from '@heroicons/react/solid';
 import { useState } from 'react';
 import { useAppSelector } from '../../hooks/useAppSelector';
-import { Message } from '../../types/message';
+import { Message, MessageType } from '../../types/message';
 import { selectCurrentUserId } from '../users/usersSlice';
 import { v4 as uuidv4 } from 'uuid';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
@@ -25,10 +25,22 @@ function MessageInput() {
       id: uuidv4(),
       authorId: currentUserId,
       timestamp: new Date().toUTCString(),
+      type: MessageType.TEXT,
       text: value.trim(),
     };
     dispatch(addMessage(message));
     setValue('');
+  };
+
+  const handleImageUpload = (image: string) => {
+    const message: Message = {
+      id: uuidv4(),
+      authorId: currentUserId,
+      timestamp: new Date().toUTCString(),
+      type: MessageType.PHOTO,
+      text: image,
+    };
+    dispatch(addMessage(message));
   };
 
   return (
@@ -47,7 +59,7 @@ function MessageInput() {
         >
           <ChevronRightIcon className="h-6 w-6 text-[#fff]" />
         </button>
-        <MessageImage />
+        <MessageImage upload={handleImageUpload} />
       </form>
     </div>
   );

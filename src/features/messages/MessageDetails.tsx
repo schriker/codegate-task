@@ -1,5 +1,6 @@
 import dayjs from 'dayjs';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
+import { MessageType } from '../../types/message';
 import { MessageDetailsPropsType } from '../../types/messageDetails';
 import { deleteMessage } from './messagesSlice';
 
@@ -8,6 +9,7 @@ function MessageDetails({
   owner,
   id,
   editMode,
+  type,
   toggleEditMode,
   handleEditMessage,
 }: MessageDetailsPropsType) {
@@ -30,12 +32,14 @@ function MessageDetails({
       <span>{dayjs(timestamp).format('HH:mm')}</span>
       {owner && (
         <>
-          <button
-            className="border-l border-zinc-400 pl-1"
-            onClick={handleEdit}
-          >
-            {editMode ? 'save' : 'edit'}
-          </button>
+          {type === MessageType.TEXT && (
+            <button
+              className="border-l border-zinc-400 pl-1"
+              onClick={handleEdit}
+            >
+              {editMode ? 'save' : 'edit'}
+            </button>
+          )}
           <button
             className="border-l border-zinc-400 pl-1"
             onClick={handleDelete}

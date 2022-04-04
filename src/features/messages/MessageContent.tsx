@@ -1,3 +1,4 @@
+import { MessageType } from '../../types/message';
 import { MessageContentPropsType } from '../../types/messageContent';
 import MessageEditForm from './MessageEditForm';
 
@@ -6,10 +7,15 @@ function MessageContent({
   text,
   author,
   editMode,
+  type,
   handleChange,
   handleEditMessage,
 }: MessageContentPropsType) {
-  return (
+  return type === MessageType.PHOTO ? (
+    <div>
+      <img className="w-full h-40 object-cover mb-2 rounded-lg" src={text} alt="" />
+    </div>
+  ) : (
     <div
       className={`rounded-2xl shadow-2xl ${
         owner
